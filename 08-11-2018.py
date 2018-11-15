@@ -1,3 +1,6 @@
+# Свистунова Марина, 2ИВТ
+# 08.11.2018, Лабораторная работа
+
 import math
 z = list(map(lambda *x: tuple([i for i in x]), range(1,6), range(5,12), range(11,18), range(1,6)))
 print(z)

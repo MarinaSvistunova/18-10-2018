@@ -1,3 +1,6 @@
+# Свистунова Марина, 2ИВТ
+# 01.11.2018, Лабораторная работа
+
 def unique_func(iterable, seen=list()): #seen = None
     # Функция возвращает список уникальных элементов
     if len(seen) == 0:   #seen = list(seen or [])
