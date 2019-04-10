@@ -32,6 +32,7 @@ def unique_func2(*iterable, seen = []):
 
 print(unique_func2([1, 1, 2, 27, 3, 3], [6, 1], 7, 's', 'f', seen = [4]))
 
+'''
 if __name__ == '__main__':
     assert type(unique_func2([1, 4, 5, 5, 5, 3, 77, 4], seen =[3, 8])) == list, "Тип"
     assert unique_func2([1, 4, 5, 5, 5, 3, 77, 4], seen =[3, 8]) == [3, 8, 1, 4, 5, 77], "Целые числа"
@@ -40,3 +41,21 @@ if __name__ == '__main__':
     assert unique_func2([1, 4.5, 5, 5, 5, 3, 77, 4], seen =[3, 'g', 8]) == [3, 'g', 8, 1, 4.5, 5, 77, 4], "Два списка"
     assert unique_func2('f', [1, 4, 5, 5, 5, 3, 4], seen=[3, 8]) == [3, 8, 'f', 1, 4, 5], "Произвольный элемент и список"
     assert unique_func2('f', seen=[3, 8]) == [3, 8, 'f'], "Произвольный элемент и список"
+'''
+
+if __name__ == '__main__':
+    import unittest
+
+
+    class TestFactorialMethods(unittest.TestCase):
+
+        def test_normal_values(self):
+            self.assertEqual(unique_func2(0), [0])
+            self.assertEqual(unique_func2(5), None)
+            self.assertEqual(unique_func2(10), [10])
+
+        def test_vals_float_type(self):
+            self.assertTrue(unique_func2(0.5) is None)
+            self.assertTrue(unique_func2(7.12456789) is None)
+
+    unittest.main(verbosity=1)

@@ -11,3 +11,5 @@ k = [int(math.sqrt(x*x)) for x in pt]
 print(k)
 k2 = [abs(x) for x in pt]
 print(k2)
+
+mass
