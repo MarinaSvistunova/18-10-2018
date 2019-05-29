@@ -52,7 +52,7 @@ def test_assert(*args):
 def test_case():
     S = []
     F = []
-    el = [[Eql, 5, 8, -2, 0.001, [0.2, -2.0], "el"], [Eql, 4, 4, 1, 0.1, 0.5, "i"],
+    el = [[Eql, 5, 8, -2, 44, [0.2, -2.0], "el"], [Eql, 4, 4, 1, 0.1, 0.5, "i"],
           [Eql, 5, 9, -2, 0.001, [0.2, -2.0], "u"]]
     for i in el:
         a = test_assert(*i)

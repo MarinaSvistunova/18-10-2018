@@ -79,15 +79,42 @@ class Book():
 
 
 class Library_card():
-    def __init__(self):
-        pass
+    def __init__(self, id_user, id_book):
+        # action - оформить книгу, добавить книгу, удалить книгу
+        self.connectDB = sqlite3.connect('library.db')
+        self.cursor = self.connectDB.cursor()
+        self.create_library_card(self.cursor)
+
+        self.id_user = id_user
+        self.id_book = id_book
+
+
+    def create_library_card(self, cursor):
+        cursor.execute("""CREATE TABLE IF NOT EXISTS Cards (
+        'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        'id_user' TEXT NOT NULL,
+        'id_book' INTEGER NOT NULL) """)
+
+    def insert_data(self, cursor):
+        new_wr = [None, self.id_user, self.id_book]
+        cursor.execute("INSERT INTO Cards VALUES (?,?,?)", new_wr)
+        self.connectDB.commit()
+
+    def delete_data(self, cursor):
+        new_wr = [None, self.id_user, self.id_book]
+        cursor.execute("DELETE FROM Cards WHERE 'id_user'==VALUES (?) and 'id_book'==VALUES (?)", new_wr[1], new_wr[2])
+        self.connectDB.commit()
 
 
 def main():
-    new_user = User('Seok-Jin', 'Kim', '4-12-1992', '1234567890')
-    new_user2 = Book('Book about BTS', 'Kim N.', '2018', '30000')
-    info = new_user.get_user_info()
-    print(info)
+    # new_user = User('Seok-Jin', 'Kim', '4-12-1992', '1234567890')
+    # new_user2 = Book('Book about BTS', 'Kim N.', '2018', '30000')
+    # info = new_user.get_user_info()
+
+    # new_card=Library_card('12344563', '324325')
+    new_card = Library_card.insert_data('1233265663', '324325')
+    # del_card = Library_card.de
+    # print(info)
 
 
 if __name__ == '__main__':

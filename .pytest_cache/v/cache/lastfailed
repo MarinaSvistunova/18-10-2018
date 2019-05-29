@@ -1,3 +1,5 @@
 {
-  "13-12-2018.py::test_assert": true
+  "13-12-2018.py::test_assert": true,
+  "Them1ISR.py::test_assert": true,
+  "Them1ISR.py::testingType": true
 }

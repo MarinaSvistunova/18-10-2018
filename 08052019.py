@@ -51,26 +51,116 @@
 # print(id(Connection()))
 
 
-import warnings
-import functools
+# import warnings
+# import functools
+#
+# def deprecated(cls):
+#     orig_init = cls.__init__
+#
+#     @functools.wraps(cls.__init__)
+#     def new_init(self, *args, **kwargs):
+#         warnings.warn(cls.__name__ + " is deprecated", category=DeprecationWarning)
+#         orig_init(self, *args, **kwargs)
+#
+#     cls.__init__ = new_init
+#     return cls
+#
+#
+# @deprecated
+# class Counter:
+#     def __init__(self, initial=0):
+#         self.value = initial
+#         print(initial)
+#
+#
+# c = Counter(10)
 
-def deprecated(cls):
-    orig_init = cls.__init__
+# import requests  # основную работу выполняет библиотека requests
+# import json  # модуль json необходим для парсинга данных, пришедших от веб-ресурса
+# import pprint  # модуль, позволяющий организовывать форматирование в более визуально-приятном виде.
+#
+#
+# def HarvardArtMuseumsAPI(req):  # создадим функцию с параметром запроса
+#
+#     try:
+#         request_api = requests.get(req)  # поскольку в процессе схемы запрос-ответ могут произойти непредвиденные
+#         # события, заключаем отправку запроса GET модуля requests в блок try..except
+#         pprint.pprint(request_api.json())  # с помощью библиотеки pprint выводим полученный ответ в формате json
+#         # ознакомьтесь со списком ошибок, которые могут возникнуть
+#         # https://2.python-requests.org/en/master/user/quickstart/#errors-and-exceptions
+#     except requests.ConnectionError:  # 1
+#         print('SSL: CERTIFICATE_VERIFY_FAILED')
+#
+#     except requests.HTTPError:  # 2
+#         print('An HTTP error occurred')
+#
+#     except requests.ConnectTimeout:  # 3
+#         print('The request timed out while trying to connect to the remote server')
+#
+#     except json.decoder.JSONDecodeError:  # 4
+#         print('Probably you are unauthorized')
+#
+#
+# def response_get(req):
+#     """
+#     Gets server's response
+#     req:  string, the request started with https://api...
+#     """
+#
+#     return requests.request('GET', req)  # альтернативный способ отправки запроса GET
+#
+#
+# request = "https://api.harvardartmuseums.org/color/34838440?apikey=ff686a00-e16c-11e7-a6c9-1fecfde3d500"
+# print('Final request: {}\n'.format(request))
+# HarvardArtMuseumsAPI(request)
+# response_get(request)
 
-    @functools.wraps(cls.__init__)
-    def new_init(self, *args, **kwargs):
-        warnings.warn(cls.__name__ + " is deprecated", category=DeprecationWarning)
-        orig_init(self, *args, **kwargs)
 
-    cls.__init__ = new_init
-    return cls
+class Today:
+    req = 'https://datazen.katren.ru/calendar/day/'
 
+    def __init__(self):
+        import requests
+        import pprint
 
-@deprecated
-class Counter:
-    def __init__(self, initial=0):
-        self.value = initial
-        print(initial)
+        date = input('yyyy-mm-dd: ')
 
+        req_result = requests.request('GET', Today.req + date + '/')
 
-c = Counter(10)
+        pprint.pprint(req_result.json())
+
+Today()
+
+# https://pixabay.com/api/?key=12560268-c732fd49e9389bca6ac445641&q=yellow+flowers&image_type=photo
+
+class Picture:
+    MyKey = '12560268-c732fd49e9389bca6ac445641'
+    req = 'https://pixabay.com/api/'
+
+    def __init__(self):
+        import requests
+        import pprint
+
+        typePicture = 'q=yellow+flowers'
+        image_type = 'image_type=photo'
+        req_result = requests.request('GET', Picture.req + '?key=' + Picture.MyKey + '&' + typePicture + '&' + image_type + '/')
+        pprint.pprint(req_result.json())
+
+Picture()
+
+# class bk:
+#     req = 'https://fs1.e.lanbook.com/api/book/118648/page/2/img'
+#
+#     def __init__(self):
+#         import requests
+#         import pprint
+#         req_result = requests.request('GET', bk.req)
+#         url = "https://pp.vk.me/c540104/c624218/v624218602/3321/uYVa4FQv_q0.jpg"
+#         out = open("img.jpg", "wb")
+#         req_result = requests.request('GET', url)
+#         out.write(url)
+#         out.close
+#         # print(type(req_result))
+#         # pprint.pprint(req_result.json())
+#
+# bk()
