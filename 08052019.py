@@ -116,37 +116,37 @@
 # response_get(request)
 
 
-class Today:
-    req = 'https://datazen.katren.ru/calendar/day/'
-
-    def __init__(self):
-        import requests
-        import pprint
-
-        date = input('yyyy-mm-dd: ')
-
-        req_result = requests.request('GET', Today.req + date + '/')
-
-        pprint.pprint(req_result.json())
-
-Today()
+# class Today:
+#     req = 'https://datazen.katren.ru/calendar/day/'
+#
+#     def __init__(self):
+#         import requests
+#         import pprint
+#
+#         date = input('yyyy-mm-dd: ')
+#
+#         req_result = requests.request('GET', Today.req + date + '/')
+#
+#         pprint.pprint(req_result.json())
+#
+# Today()
 
 # https://pixabay.com/api/?key=12560268-c732fd49e9389bca6ac445641&q=yellow+flowers&image_type=photo
 
-class Picture:
-    MyKey = '12560268-c732fd49e9389bca6ac445641'
-    req = 'https://pixabay.com/api/'
-
-    def __init__(self):
-        import requests
-        import pprint
-
-        typePicture = 'q=yellow+flowers'
-        image_type = 'image_type=photo'
-        req_result = requests.request('GET', Picture.req + '?key=' + Picture.MyKey + '&' + typePicture + '&' + image_type + '/')
-        pprint.pprint(req_result.json())
-
-Picture()
+# class Picture:
+#     MyKey = '12560268-c732fd49e9389bca6ac445641'
+#     req = 'https://pixabay.com/api/'
+#
+#     def __init__(self):
+#         import requests
+#         import pprint
+#
+#         typePicture = 'q=yellow+flowers'
+#         image_type = 'image_type=photo'
+#         req_result = requests.request('GET', Picture.req + '?key=' + Picture.MyKey + '&' + typePicture + '&' + image_type + '/')
+#         pprint.pprint(req_result.json())
+#
+# Picture()
 
 # class bk:
 #     req = 'https://fs1.e.lanbook.com/api/book/118648/page/2/img'
@@ -164,3 +164,23 @@ Picture()
 #         # pprint.pprint(req_result.json())
 #
 # bk()
+
+class marvel():
+    import hashlib
+    m = hashlib.md5()
+    publicKey = '60a83a7286b86efc49fbf8a37e44dcc4'
+    privateKey = '207b0ba73f7abc39af366c8c6ec59a7e40494ea3'
+    ts = '123'
+    m.update((str(ts) + str(privateKey) + str(publicKey)).encode('utf-8'))
+    myApi = m.hexdigest()
+
+    req = 'https://gateway.marvel.com/v1/public/comics?ts=' + ts + '&apikey=' + publicKey + '&hash=' + myApi
+
+    def __init__(self):
+        import requests
+        import pprint
+        req_result = requests.request('GET', marvel.req)
+        # print(type(req_result))
+        pprint.pprint(req_result.json())
+
+marvel()
